@@ -1,42 +1,65 @@
-const isPrime = new Array(200000).fill(true);
-
-function sieveOfEratosthenes() {
-  isPrime[0] = false;
-  isPrime[1] = false;
-  const limit = Math.sqrt(isPrime.length);
-  for (let num = 2; num <= limit; num++) {
-    if (isPrime[num]) {
-      for (let multiple = num * num; multiple < isPrime.length; multiple += num) {
-        isPrime[multiple] = false;
-      }
-    }
-  }
-}
+const stepSizeSlider = document.getElementById('step_size');
+const dotSizeSlider = document.getElementById('dot_size');
+let isAnimating = true;
 
 let x, y;
 let num = 1;
-
-function setup() {
-  createCanvas(800, 800);
-  x = width / 2;
-  y = height / 2;
-  background(255);
-  sieveOfEratosthenes();
-}
-
-let stepSize = 2;
+let stepSize = 10;
+let dotSize = 3;
 let direction = 0;
 let turns = 0;
 let numSteps = 1;
 let steps = 0;
 
+function isPrime(value) {
+  if (value == 1) {
+    return false;
+  }
+  for (i = 2; i < Math.sqrt(value); i++) {
+    if (value % i == 0) {
+      return false;
+    }
+  }
+  return true;
+}
+
+function resetSketch() {
+    clear();
+    num = 1;
+    direction = 0;
+    turns = 0;
+    numSteps = 1;
+    steps = 0;
+  
+    createCanvas(800, 800);
+    x = width / 2;
+    y = height / 2;
+    background(255);
+    isAnimating = true;
+    loop();
+  }
+
+stepSizeSlider.onchange = () => {
+    stepSize = parseFloat(stepSizeSlider.value);
+    resetSketch();
+}
+
+dotSizeSlider.onchange = () => {
+    dotSize = parseFloat(dotSizeSlider.value);
+    resetSketch();
+}
+
+function setup() {
+    resetSketch();
+}
+
 function draw() {
-  if (isPrime[num]) {
+  if (isPrime(num)) {
     fill(100);
     stroke(100);
-    ellipse(x, y, 2);
+    ellipse(x, y, dotSize);
   }
-//   if (num < 200000) {
+  if (x < width && x > 0) {
     stroke(100, 50);
     if (direction === 0) {
       line(x, y, x + stepSize, y);
@@ -66,7 +89,10 @@ function draw() {
     }
     steps++;
     frameRate(600);
-//   } else {
-//     noLoop();
-//   }
+  } else {
+    noLoop();
+    if (isAnimating) {
+        isAnimating = false; // Animation finished
+      }
+  }
 }

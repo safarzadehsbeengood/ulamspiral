@@ -1,28 +1,26 @@
-const isPrime = new Array(20000).fill(true);
 const stepSizeSlider = document.getElementById('step_size');
 const dotSizeSlider = document.getElementById('dot_size');
 let isAnimating = true;
 
 let x, y;
 let num = 1;
-let stepSize = 2;
+let stepSize = 10;
 let dotSize = 3;
 let direction = 0;
 let turns = 0;
 let numSteps = 1;
 let steps = 0;
 
-function sieveOfEratosthenes() {
-  isPrime[0] = false;
-  isPrime[1] = true;
-  const limit = Math.sqrt(isPrime.length);
-  for (let num = 2; num <= limit; num++) {
-    if (isPrime[num]) {
-      for (let multiple = num * num; multiple < isPrime.length; multiple += num) {
-        isPrime[multiple] = false;
-      }
+function isPrime(value) {
+  if (value == 1) {
+    return false;
+  }
+  for (i = 2; i < Math.sqrt(value); i++) {
+    if (value % i == 0) {
+      return false;
     }
   }
+  return true;
 }
 
 function resetSketch() {
@@ -33,12 +31,13 @@ function resetSketch() {
     numSteps = 1;
     steps = 0;
   
-    createCanvas(800, 800);
+    var cnv = createCanvas(window.innerWidth / 2, window.innerHeight / 2);
+    cnvWidth = (windowWidth - width) / 2;
+    cnvHeight = (windowHeight - height) / 2;
+    cnv.position(cnvWidth, cnvHeight);
     x = width / 2;
     y = height / 2;
-    isPrime.fill(true);
-    background(255);
-    sieveOfEratosthenes();
+    background(0);
     isAnimating = true;
     loop();
   }
@@ -53,17 +52,21 @@ dotSizeSlider.onchange = () => {
     resetSketch();
 }
 
+window.onresize = () => {
+  resetSketch();
+}
+
 function setup() {
     resetSketch();
 }
 
 function draw() {
-  if (isPrime[num]) {
-    fill(100);
-    stroke(100);
+  if (isPrime(num)) {
+    fill(255);
+    stroke(255);
     ellipse(x, y, dotSize);
   }
-  if (x < width && x > 0) {
+  if (x < width && x > 0 && y < height && y > 0) {
     stroke(100, 50);
     if (direction === 0) {
       line(x, y, x + stepSize, y);
