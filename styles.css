@@ -1,68 +1,111 @@
-@import url('https://fonts.googleapis.com/css2?family=Space+Mono&family=Young+Serif&display=swap');
+@import url("https://fonts.googleapis.com/css2?family=Space+Mono&family=Young+Serif&display=swap");
 
-html, body {
-    margin: 0;
-    padding: 0;
-    font-family: 'Young Serif', serif;
-    color: white;
+html,
+body {
+  margin: 0;
+  padding: 0;
+  font-family: "Young Serif", serif;
+  color: white;
+}
+
+#navbar {
+    position: absolute; 
+    display: flex;
+    width: 100%;
+    justify-content: space-evenly;
+    align-items: center;
+    flex-direction: row;
+    top: 20px;
+}
+
+#home {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 5px;
+  margin: 0px;
+  position: absolute;
+  left: 10px;
+  text-decoration: none;
+  background: transparent;
+  border: none;
+  text-align: center;
+  color: white;
+  font-size: 1em;
+  font-family: "Young Serif", monospace;
+}
+
+#home:hover {
+    background: rgba(128, 128, 128, 0.507);
+    cursor: pointer;
+    border: 1px solid white;
 }
 
 input {
-    /* color: black; */
-    /* background-color: black; */
-    z-index: 1;
-    width: 40%;
+  /* color: black; */
+  /* background-color: black; */
+  z-index: 1;
+  width: 40%;
+}
+
+#dot-size, #step-size {
+    font-family: "JetBrainsMono", monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    /* border: 1px solid white; */
+    width: 100%;
 }
 
 /* Remove the default styles */
 input[type="range"] {
-    -webkit-appearance: none;
-    appearance: none;
-    height: 5px;
-    background-color: rgb(110, 110, 110);;
-    border: 1px solid white;
-    border-radius: 5px;
-    outline: none;
-    opacity: 0.5;
-    transition: opacity 0.2s;
-    /* cursor: pointer; */
-  }
-  
-  /* Change the appearance of the slider thumb */
-  input[type="range"]::-webkit-slider-thumb {
-    -webkit-appearance: none;
-    appearance: none;
-    width: 15px;
-    height: 15px;
-    background: white; /* Set the thumb background color to white */
-    border-radius: 50%;
-    /* cursor: pointer; */
-  }
-  
-
-footer {
-    display: flex;
-    width: 100%;
-    flex-direction: row;
-    flex-wrap: nowrap;
-    justify-content: space-evenly;
-    align-items: center;
+  -webkit-appearance: none;
+  appearance: none;
+  height: 5px;
+  background-color: rgb(110, 110, 110);
+  border: 1px solid white;
+  border-radius: 5px;
+  width: 90%;
+  outline: none;
+  opacity: 0.5;
+  transition: opacity 0.2s;
+  /* cursor: pointer; */
 }
 
+/* Change the appearance of the slider thumb */
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 15px;
+  height: 15px;
+  background: white; /* Set the thumb background color to white */
+  border-radius: 50%;
+  /* cursor: pointer; */
+}
+
+footer {
+  display: flex;
+  width: 100%;
+  flex-direction: row;
+  flex-wrap: nowrap;
+  justify-content: space-evenly;
+  align-items: center;
+}
 
 input::-webkit-slider-thumb:hover {
-    cursor: pointer;
-    background: rgb(255, 255, 255);
-    opacity: 1;
+  cursor: pointer;
+  background: rgb(255, 255, 255);
+  opacity: 1;
 }
 
 body {
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    background-color: black;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: black;
 }
 canvas {
-    display: block;
-    z-index: 0;
+  display: block;
+  z-index: 0;
 }

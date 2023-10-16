@@ -13,12 +13,34 @@
     <script src="script.js" defer></script>
   </head>
   <body>
-    <nav style="position: absolute; top: 20px">ulam spiral</nav>
+    <nav id="navbar">
+      <button id="home">
+        <a href="../index.html" style="text-decoration: none; color: white"
+          >home</a
+        >
+      </button>
+      <p>ulam spiral</p>
+    </nav>
     <main>
-      <div id="options">
-        
-      </div>
+      <div id="options"></div>
     </main>
   </body>
-  <footer style="position: absolute; bottom: 20px"><input id="dot_size" type="range" min="1" max="7" step="0.01" value="3"/>ryan safa<input id="step_size" type="range" min="2" max="20" step="0.01" value="10"/></footer>
+  <footer style="position: absolute; bottom: 20px">
+    <div id="dot-size">
+      <p>dot size</p>
+      <input id="dot_size" type="range" min="1" max="7" step="0.01" value="3" />
+    </div>
+    <p style="white-space: nowrap;">ryan safa</p>
+    <div id="step-size">
+      <p>step size</p>
+      <input
+        id="step_size"
+        type="range"
+        min="2"
+        max="20"
+        step="0.01"
+        value="10"
+      />
+    </div>
+  </footer>
 </html>
