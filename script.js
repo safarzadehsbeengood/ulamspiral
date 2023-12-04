@@ -95,7 +95,6 @@ function draw() {
       }
     }
     steps++;
-    frameRate(600);
   } else {
     noLoop();
     if (isAnimating) {
